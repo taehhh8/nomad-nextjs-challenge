@@ -1,0 +1,119 @@
+.listGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.listCard {
+  position: relative;
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.listCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.listCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.listCard:hover::before {
+  transform: scaleX(1);
+}
+
+.listCard h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: #2d3436;
+  font-weight: 600;
+}
+
+.listCard p {
+  color: #636e72;
+  font-size: 0.9rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.listCard p::before {
+  content: "🕒";
+  font-size: 1rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .listGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .listCard {
+    padding: 1.5rem;
+  }
+
+  .listCard h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* 호버 효과를 위한 미디어 쿼리 (터치 디바이스에서는 다르게 동작) */
+@media (hover: none) {
+  .listCard:hover {
+    transform: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .listCard {
+    background: #2d3436;
+    border-color: #636e72;
+  }
+
+  .listCard h2 {
+    color: #dfe6e9;
+  }
+
+  .listCard p {
+    color: #b2bec3;
+  }
+}
+
+/* 로딩 애니메이션 효과 */
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.listCard.loading {
+  animation: shimmer 1s linear infinite;
+  background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+  background-size: 800px 104px;
+}
