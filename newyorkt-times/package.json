@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "npm install && next build"  
   },
   "dependencies": {
     "next": "14.0.3",
@@ -14,14 +15,11 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5",
-    "eslint": "^8",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "typescript": "5.2.2",
+    "eslint": "8.53.0",
     "eslint-config-next": "14.0.3"
-  },
-  "engines": {
-    "node": ">=18.17.0"
   }
 }
