@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "@/styles/DetailPage.module.css";
+import { getListByName } from "@/lib/api";
 
 interface Book {
   rank: number;
@@ -11,21 +12,13 @@ interface Book {
   primary_isbn10: string;
 }
 
-interface PageProps {
-  params: { name: string };
-}
+type Props = {
+  params: Promise<{ name: string }>;
+};
 
-// React Component로 명시적 타입 지정
-const DetailPage = async ({ params }: PageProps) => {
-  const response = await fetch(
-    `https://books-api.nomadcoders.workers.dev/list?name=${params.name}`
-  );
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  const json = await response.json();
+const DetailPage = async ({ params }: Props) => {
+  const { name } = await params;
+  const json = await getListByName(name);
   const books = json.results.books;
 
   return (
@@ -64,5 +57,4 @@ const DetailPage = async ({ params }: PageProps) => {
   );
 };
 
-// 명시적으로 export default
 export default DetailPage;
